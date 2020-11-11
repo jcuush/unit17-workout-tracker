@@ -1,32 +1,30 @@
 const express = require("express");
-const mongojs = require("mongojs");
 let mongoose = require("mongoose");
+
+const PORT = process.env.PORT || 8080;
 
 const app = express();
 
-const databaseUrl = "workout";
-const collections = ["workoutSeeds"];
-
-const db = mongojs(databaseUrl, collections);
-
-db.on("error", error => {
-  console.log("Database Error:", error);
-});
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Hello world");
 });
 
-app.get("/exercise", (req, res) => {
-    db.exercises.find({}, (err, data) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.json(data);
-      }
-    });
-  });
 
-app.listen(3000, () => {
-  console.log("App running on port 3000!");
+mongoose.connect(
+    process.env.MONGODB_URI || 'mongodb://localhost/workout',
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false
+    }
+  );
+
+  app.use(require("./routes/api.js"))
+
+  app.listen(PORT, () => {
+    console.log("Server listening on: http://localhost:" + PORT);
 });
