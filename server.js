@@ -10,9 +10,9 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-  res.send("Hello world");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello world");
+// });
 
 
 mongoose.connect(
