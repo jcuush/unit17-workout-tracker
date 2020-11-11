@@ -20,9 +20,9 @@ mongoose.connect(
       useFindAndModify: false
     }
   );
-    app.use("*", (req, res) => {
-        res.send("Hello World");
-    })
+    // app.use("*", (req, res) => {
+    //     res.send("Hello World");
+    // })
 
   app.listen(PORT, () => {
     console.log("Server listening on: http://localhost:" + PORT);
