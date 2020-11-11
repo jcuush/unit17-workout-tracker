@@ -23,7 +23,7 @@ mongoose.connect(
     }
   );
 
-  app.use(require("./routes/api.js"))
+  app.use(require("/"))
 
   app.listen(PORT, () => {
     console.log("Server listening on: http://localhost:" + PORT);
