@@ -8,6 +8,8 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
+app.use(express.static("public"));
+
 app.get("/", (req, res) => {
   res.send("Hello world");
 });
@@ -22,8 +24,9 @@ mongoose.connect(
       useFindAndModify: false
     }
   );
-
-  app.use(require("/"))
+    app.use("*", (req, res) => {
+        res.send("Hello World");
+    })
 
   app.listen(PORT, () => {
     console.log("Server listening on: http://localhost:" + PORT);
