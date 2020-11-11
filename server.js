@@ -4,7 +4,7 @@ const mongojs = require("mongojs");
 const app = express();
 
 const databaseUrl = "workout";
-const collections = ["workoutSeed"];
+const collections = ["workoutSeeds"];
 
 const db = mongojs(databaseUrl, collections);
 
@@ -14,16 +14,6 @@ db.on("error", error => {
 
 app.get("/", (req, res) => {
   res.send("Hello world");
-});
-
-app.get("/stats", (req, res) => {
-  db.animals.find({}, (err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(data);
-    }
-  });
 });
 
 app.listen(3000, () => {
