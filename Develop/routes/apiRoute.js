@@ -1,14 +1,15 @@
 const Workout = require("../models/workout")
+const app =require("express");
 
-module.exports = app => {
-    app.get("/api/workouts", (req, res) => {
-        Workout.find({})
-        .then(data => {
+module.exports = function(app){ 
+    
+    app.get("/",function(req,res){  
+        Workout.find()
+        .then(data =>{  
             res.json(data)
         })
-        .catch(error => {
-            res.json(error)
+        .catch(err => { 
+            res.json(err)
         })
-    })
+    });
 }
-   
