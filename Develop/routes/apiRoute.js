@@ -1,9 +1,9 @@
 const Workout = require("../models/workout")
-const app =require("express");
+
 
 module.exports = function(app){ 
     
-    app.get("/",function(req,res){  
+    app.get("/api/workouts",function(req,res){  
         Workout.find()
         .then(data =>{  
             res.json(data)
